@@ -9,14 +9,14 @@ class UsersController < ApplicationController
     end
   end
 
-  # def create
-  #   user = User.new(user_params)
-  #   user.save
-  # end
+  def create
+    user = User.new(user_params)
+    user.save
+  end
 
-  #  private
+   private
 
-  #  def  user_params
-  #    params.require(:register_data).permit(:username.:name,:handle,:password)
-  #  end
+   def  user_params
+     params.require(:register_data).permit(:username.:name,:handle,:password)
+   end
 end
