@@ -15,7 +15,11 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(user_params)
-    render json: user.save
+    if user.save
+      render json: user.id
+    else
+      render json: false
+    end
   end
 
    private
