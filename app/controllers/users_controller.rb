@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if user && user.authenticate(params[:password])
       render json: user.id
     else
-       render json: 'not this one'
+       render json: false
     end
   end
 
