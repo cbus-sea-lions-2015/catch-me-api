@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  def index
+    render json: User.all
+  end
+
   def authenticate
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
@@ -17,6 +21,6 @@ class UsersController < ApplicationController
    private
 
    def  user_params
-     params.require(:register_data).permit(:username.:name,:handle,:password)
+     params.require(:register_data).permit(:username,:name,:handle,:password)
    end
 end
