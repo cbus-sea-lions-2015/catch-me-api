@@ -11,12 +11,8 @@ class CoursesController < ApplicationController
 	end
      
 	 def create
-	   course = User.find_by(id: params[:user_id]).courses.new
-	   if course.save
-	     render json: course.id
-		 else
-		 	 render json: false
-		 end
+	   course = User.find_by(id: params[:user_id]).courses.create
+	   render json: course.id
 	 end
 
  

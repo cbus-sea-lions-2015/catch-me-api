@@ -6,8 +6,8 @@ class CoursesPointsController < ApplicationController
 	end
 
 	def create
-	  course = Course.find_by(id: params[:course_id])
-    course.courses_points.create(course_point_params)
+    course_point = Course.find_by(id: params[:course_id]).courses_points.create(course_point_params)
+    render json: course_point.id
 	end
     
     private
