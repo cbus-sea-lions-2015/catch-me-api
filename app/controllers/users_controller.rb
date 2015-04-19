@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+
+  def index
+    render json: User.all
+  end
+
   def authenticate
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
