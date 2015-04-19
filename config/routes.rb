@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :courses, except: [:new, :edit] 
-  resources :users, only: [:create]
+  resources :users, only: [:create, :index]
   resource :courses_points, except: [:new, :edit]
   post 'users/authenticate'=> 'users#authenticate'
    
