@@ -6,6 +6,9 @@ class CoursesController < ApplicationController
       render json: @course
 	end
      
+     def create
+       User.find_by(id: params[:user_id]).courses.create
+     end
  
 end
 
