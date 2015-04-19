@@ -10,9 +10,10 @@ class CoursesController < ApplicationController
 		render json: Course.all
 	end
      
- def create
-   User.find_by(id: params[:user_id]).courses.create
- end
+	 def create
+	   user = User.find_by(id: params[:user_id]).courses.create
+	   render json: user.courses.last.id
+	 end
 
  
 end
