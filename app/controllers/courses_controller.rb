@@ -12,7 +12,7 @@ class CoursesController < ApplicationController
      
 	 def create
 	   user = User.find_by(id: params[:user_id]).courses.create
-	   user.courses.last.id
+	   # user.courses.last.id
 	 end
 
  
