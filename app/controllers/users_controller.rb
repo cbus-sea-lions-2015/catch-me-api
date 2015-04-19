@@ -9,13 +9,14 @@ class UsersController < ApplicationController
     if user && user.authenticate(params[:password])
       render json: user.id
     else
-       render json: false
+       render json: 'not this one'
     end
   end
 
   def create
     user = User.new(user_params)
-    user.save
+    render json: user.save
+    render json: {mobile: 1}
   end
 
    private
