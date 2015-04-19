@@ -44,8 +44,11 @@ GEM
       i18n (~> 0.5)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
+    hashie (3.4.1)
     i18n (0.7.0)
     json (1.8.2)
+    jwt-rb (0.0.2)
+      hashie
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -106,6 +109,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   faker
+  jwt-rb
   pg
   rack-cors
   rails (= 4.2.1)

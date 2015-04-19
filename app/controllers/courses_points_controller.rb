@@ -7,7 +7,7 @@ class CoursesPointsController < ApplicationController
 
 	def create
 	  course = Course.find_by(id: params[:course_id])
-      course.courses_points.create(course_point_params)
+    course.courses_points.create(course_point_params)
 	end
     
     private
