@@ -1,4 +1,4 @@
-class CoursesPointsController < ApplicationController
+class CoursesPointsController < SecuredController
 	
 	def show
       course_points = Course.find_by(id: params[:id]).courses_points
