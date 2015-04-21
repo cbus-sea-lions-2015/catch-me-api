@@ -20,7 +20,16 @@ class CoursesController < ApplicationController
 	   render json: course.id
 	end
 
- 
+	def update
+      Course.find_by(id: params[:id]).update_attributes(courses_update_params)
+	end
+
+	private
+
+	def courses_update_params
+      params.require(:course).permit(:city, :country, :duration, :distance, :name, :average_speed)
+	end
+
 end
 
 
