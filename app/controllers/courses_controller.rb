@@ -1,4 +1,4 @@
-class CoursesController < ApplicationController
+class CoursesController < SecuredController
  
 	def show
 	  if params[:user_id]
