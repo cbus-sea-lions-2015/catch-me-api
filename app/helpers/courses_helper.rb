@@ -40,7 +40,7 @@ module CoursesHelper
 #  #    d = r * c
 #  #  end
   def agregate_average_speed(user_id)
-    courses = Course.where(user_id: user_id)
+    courses = Course.where(auth_id: user_id)
     speed_averages = []
     
     courses.each do |course|

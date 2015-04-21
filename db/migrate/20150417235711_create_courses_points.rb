@@ -6,6 +6,7 @@ class CreateCoursesPoints < ActiveRecord::Migration
       t.integer :course_id
       t.integer :altitude
       t.integer :speed
+      t.integer :distance_from_previous
 
       t.timestamps null: false
     end
