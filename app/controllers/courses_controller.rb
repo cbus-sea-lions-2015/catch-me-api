@@ -2,7 +2,7 @@ class CoursesController < SecuredController
  
 	def show
 	  if params[:user_id]
-     user_courses = User.find_by(id: params[:user_id]).courses
+     user_courses = User.find_by(auth_id: params[:user_id]).courses
      render json: user_courses
 	  else
       @course = Course.find_by(id: params[:id])
@@ -16,7 +16,7 @@ class CoursesController < SecuredController
 	end
      
 	def create
-	   course = User.find_by(id: params[:user_id]).courses.create
+	   course = User.find_by(auth_id: params[:auth_id]).courses.create
 	   render json: course.id
 	end
 
