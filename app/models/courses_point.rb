@@ -7,7 +7,9 @@ class CoursesPoint < ActiveRecord::Base
   def position
     {latitude: latitude, longitude: longitude}
   end
-  
+   
+ 
+ 
   
   private
   def calculate_distance
@@ -20,6 +22,8 @@ class CoursesPoint < ActiveRecord::Base
     self.distance_from_previous = distance_between_two_coordinates(old_position,position)
     end
   end
+
+  
 
    
 end
