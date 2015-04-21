@@ -1,4 +1,4 @@
-class AuthController < ApplicationController
+class AuthController < SecuredController
 
   def register
     user = User.new(user_params)
