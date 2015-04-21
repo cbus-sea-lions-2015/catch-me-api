@@ -1,10 +1,11 @@
 module CoursesHelper
 
-  def self.distance_between_two_coordinates(point_a,point_b)
-  	lat1 = point_a.latitude
-  	lon1 = point_a.longitude
-	  lat2 = point_b.latitude
-	  lon2 = point_b.longitude
+  def distance_between_two_coordinates(point_a,point_b)
+    puts point_a
+  	lat1 = point_a[:latitude]
+  	lon1 = point_a[:longitude]
+	  lat2 = point_b[:latitude]
+	  lon2 = point_b[:longitude]
     r = 6371000
 	  phi1 = lat1 * Math::PI / 180 
 	  phi2 = lat2 * Math::PI / 180 

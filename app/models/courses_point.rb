@@ -5,20 +5,22 @@ class CoursesPoint < ActiveRecord::Base
 
 
   def position
-    {latitude, longitude}
+    {latitude: latitude, longitude: longitude}
   end
   
   
   private
   def calculate_distance
-    index = CoursePoint.find_by(course_id: course_id).length
-    if length == 0
+    number_of_points = CoursesPoint.where(course_id: self.course_id).length
+    if number_of_points == 0
       self.distance_from_previous = 0
     else
-    old_position = CoursePoint.find_by(course_id: course_id)[index-1].position
-    self.distance_from_previous = distance_between_two_coordinates({{old_position},{position}})
+    old_position = CoursesPoint.where(course_id: course_id).last.position
+    puts old_position
+    self.distance_from_previous = distance_between_two_coordinates(old_position,position)
     end
   end
+
    
 end
 
