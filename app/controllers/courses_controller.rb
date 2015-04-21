@@ -2,12 +2,17 @@ class CoursesController < SecuredController
  
 	def show
 	  if params[:user_id]
-     user_courses = User.find_by(auth_id: params[:user_id]).courses
-     render json: user_courses
+     	user_courses = User.find_by(auth_id: params[:user_id]).courses
+     	
+     	render json: user_courses
 	  else
-      @course = Course.find_by(id: params[:id])
-      logger.info(@course)
-      render json: @course
+      	course = Course.find_by(id: params[:id])
+      	course_details = {duration: course.duration, 
+      	distance: course.distance, 
+      	name: course.name, 
+      	average_speed: course.average_speed}
+
+      	render json: course_details
      end
 	end
 
@@ -27,7 +32,7 @@ class CoursesController < SecuredController
 	private
 
 	def courses_update_params
-      params.require(:course).permit(:city, :country, :duration, :distance, :name, :average_speed)
+      params.require(:course).permit(:name)
 	end
 
 end

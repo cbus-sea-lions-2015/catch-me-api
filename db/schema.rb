@@ -18,24 +18,18 @@ ActiveRecord::Schema.define(version: 20150417235711) do
 
   create_table "courses", force: :cascade do |t|
     t.integer  "user_id"
-    t.float    "average_speed"
-    t.string   "duration"
-    t.float    "distance"
-    t.string   "country"
-    t.string   "city"
     t.string   "name"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "courses_points", force: :cascade do |t|
     t.float    "longitude"
     t.float    "latitude"
     t.integer  "course_id"
-    t.float    "altitude"
-    t.float    "speed"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "distance_from_previous"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|
