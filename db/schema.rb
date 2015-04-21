@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(version: 20150417235711) do
 
   create_table "courses", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "average_speed"
-    t.integer  "duration"
-    t.integer  "distance"
+    t.float    "average_speed"
+    t.string   "duration"
+    t.float    "distance"
     t.string   "country"
     t.string   "city"
     t.string   "name"
@@ -29,23 +29,21 @@ ActiveRecord::Schema.define(version: 20150417235711) do
   end
 
   create_table "courses_points", force: :cascade do |t|
-    t.integer  "longitude"
-    t.integer  "latitude"
+    t.float    "longitude"
+    t.float    "latitude"
     t.integer  "course_id"
-    t.integer  "altitude"
-    t.integer  "speed"
+    t.float    "altitude"
+    t.float    "speed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "username"
-    t.string   "about_me"
-    t.string   "handle"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "auth_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  add_index "users", ["auth_id"], name: "index_users_on_auth_id", using: :btree
 
 end
