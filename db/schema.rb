@@ -11,16 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150417235711) do
+ActiveRecord::Schema.define(version: 20150421004320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "courses", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "average_speed"
-    t.integer  "duration"
-    t.integer  "distance"
+    t.float    "average_speed"
+    t.string   "duration"
+    t.float    "distance"
     t.string   "country"
     t.string   "city"
     t.string   "name"
@@ -29,19 +29,31 @@ ActiveRecord::Schema.define(version: 20150417235711) do
   end
 
   create_table "courses_points", force: :cascade do |t|
-    t.integer  "longitude"
-    t.integer  "latitude"
+    t.float    "longitude"
+    t.float    "latitude"
     t.integer  "course_id"
-    t.integer  "altitude"
-    t.integer  "speed"
+    t.float    "altitude"
+    t.float    "speed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tracks", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.float    "average_speed"
+    t.string   "duration"
+    t.float    "distance"
+    t.string   "country"
+    t.string   "city"
+    t.string   "name"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "username"
-    t.string   "about_me"
     t.string   "handle"
     t.string   "password_digest"
     t.datetime "created_at",      null: false
