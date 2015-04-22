@@ -21,7 +21,7 @@ class CoursesController < SecuredController
 	end
      
 	def create
-	   course = User.find_by(auth_id: params[:auth_id]).courses.create
+	   course = User.find_by(auth_id: params[:auth_id]).courses.create(name: params[:name])
 	   render json: course.id
 	end
 
