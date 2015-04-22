@@ -3,15 +3,16 @@ class CoursesController < SecuredController
 	def show
 	  if params[:user_id]
      	user_courses = User.find_by(auth_id: params[:user_id]).courses
-     	course_details = {}
+     	course_details = []
      	user_courses.each do |course|
-          course_details.push ({duration: course.duration, 
-      	distance: course.distance, 
-      	name: course.name, 
-      	average_speed: course.average_speed,
-        created_at: course.created_at})
+        course_details << {
+	        duration: course.duration, 
+	      	distance: course.distance, 
+	      	name: course.name, 
+	      	average_speed: course.average_speed,
+	        created_at: course.created_at
+          }
      	end
-        
 
      	render json: course_details
 	  else
