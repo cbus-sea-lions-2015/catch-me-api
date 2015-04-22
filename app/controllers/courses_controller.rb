@@ -5,29 +5,13 @@ class CoursesController < SecuredController
      	user_courses = User.find_by(auth_id: params[:user_id]).courses
      	course_details = []
      	user_courses.each do |course|
-        course_details <<  {
-        	id: course.id,
-	        duration: Time.at(course.duration).utc.strftime("%H:%M:%S") , 
-	      	distance: course.distance,
-	      	name: course.real_name, 
-	      	average_speed: course.average_speed,
-	        created_at: course.created_at.strftime("%b-%d-%Y %H:%M")
-          }
+        course_details << format_course_data(course)
      	end
 
      	render json: course_details.reverse.take(5)
 	  else
       	course = Course.find_by(id: params[:id])
-      	course_details = {
-      	id: course.id,
-      	duration: Time.at(course.duration).utc.strftime("%H:%M:%S") , 
-      	distance: course.distance, 
-      	name: course.name, 
-      	average_speed: course.average_speed,
-        created_at: course.created_at.strftime("%b-%d-%Y %H:%M")
-      }
-
-      	render json: course_details
+      	render json: format_course_data(course)
      end
 	end
 
@@ -37,6 +21,8 @@ class CoursesController < SecuredController
      
 	def create
 	   course = User.find_by(auth_id: params[:auth_id]).courses.create(name: params[:name])
+	   course.update_attributes(catch_me_course_id: params[:catch_me_course_id]) if params[:catch_me_course_id]                                                            
+	   	                                                               
 	   render json: course.id
 	end
 
@@ -44,11 +30,33 @@ class CoursesController < SecuredController
       Course.find_by(id: params[:id]).update_attributes(courses_update_params)
 	end
 
+
+	def destroy
+      Course.find_by(id: params[:id]).destroy
+      Course.each { |course| course.catch_me_course_id = nil if course.catch_me_course_id == params[:id]}
+	end
+
 	private
 
 	def courses_update_params
-      params.require(:course).permit(:name)
+      params.require(:course).permit(:name,:favorite)
 	end
+
+	def format_course_data(course)
+	  {
+    	id: course.id,
+        duration: Time.at(course.duration).utc.strftime("%H:%M:%S") , 
+      	distance: course.distance,
+      	name: course.name, 
+      	average_speed: course.average_speed,
+      	favorite: course.favorite,
+      	catch_me_course_id: course.catch_me_course_id,
+        created_at: course.created_at.strftime("%b-%d-%Y %H:%M"),
+        comparison_speed: Course.comparison(course.id,course.catch_me_course_id)
+      }
+     end
+
+	
 
 end
 
