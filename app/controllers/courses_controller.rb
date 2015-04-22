@@ -11,6 +11,8 @@ class CoursesController < SecuredController
 	      	distance: course.distance,
 	      	name: course.real_name, 
 	      	average_speed: course.average_speed,
+	      	favorite: course.favorite,
+	      	catch_me_course_id: course.catch_me_course_id,
 	        created_at: course.created_at.strftime("%b-%d-%Y %H:%M")
           }
      	end
@@ -24,6 +26,8 @@ class CoursesController < SecuredController
       	distance: course.distance, 
       	name: course.name, 
       	average_speed: course.average_speed,
+        favorite: course.favorite,
+        catch_me_course_id: course.catch_me_course_id,
         created_at: course.created_at.strftime("%b-%d-%Y %H:%M")
       }
 
@@ -37,6 +41,8 @@ class CoursesController < SecuredController
      
 	def create
 	   course = User.find_by(auth_id: params[:auth_id]).courses.create(name: params[:name])
+	   course.update_attributes(catch_me_course_id: params[:catch_me_course_id]) if params[:catch_me_course_id]                                                            
+	   	                                                               
 	   render json: course.id
 	end
 
@@ -52,7 +58,7 @@ class CoursesController < SecuredController
 	private
 
 	def courses_update_params
-      params.require(:course).permit(:name)
+      params.require(:course).permit(:name,:favorite)
 	end
 
 end

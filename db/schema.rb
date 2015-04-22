@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(version: 20150417235711) do
   create_table "courses", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "favorite",           default: false
+    t.integer  "catch_me_course_id"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "courses_points", force: :cascade do |t|
@@ -28,8 +30,9 @@ ActiveRecord::Schema.define(version: 20150417235711) do
     t.float    "latitude"
     t.integer  "course_id"
     t.integer  "distance_from_previous"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.boolean  "favorite",               default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   create_table "users", force: :cascade do |t|

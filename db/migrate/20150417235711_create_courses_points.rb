@@ -5,6 +5,7 @@ class CreateCoursesPoints < ActiveRecord::Migration
       t.float :latitude
       t.integer :course_id
       t.integer :distance_from_previous
+   
 
       t.timestamps null: false
     end
