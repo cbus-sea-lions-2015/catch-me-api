@@ -44,6 +44,11 @@ class CoursesController < SecuredController
       Course.find_by(id: params[:id]).update_attributes(courses_update_params)
 	end
 
+
+	def destroy
+      Course.find_by(id: params[:id]).destroy
+	end
+
 	private
 
 	def courses_update_params
