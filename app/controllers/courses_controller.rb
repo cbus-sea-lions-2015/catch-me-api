@@ -21,7 +21,7 @@ class CoursesController < SecuredController
     user_courses.each do |course|
       distances.push(course.distance)
     end
-    (15-distances.size).times{distances.unshift(3)}
+    (15-distances.size).times{distances.unshift(0)}
     render json: {distance: distances}
   end
 
