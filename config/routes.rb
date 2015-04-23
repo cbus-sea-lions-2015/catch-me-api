@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resource :courses_points, except: [:new, :edit]
   post 'users/authenticate'=> 'users#authenticate'
   get 'users/:user_id/courses'=> 'courses#show' 
+  get 'users/:user_id/profiledata'=> 'courses#profiledata'
+
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

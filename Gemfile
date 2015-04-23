@@ -10,7 +10,6 @@ gem 'spring', :group => :development
 
 
 gem 'pg'
-gem 'faker'
 gem 'rack-cors'
 gem 'faker'
 
