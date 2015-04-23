@@ -18,10 +18,10 @@ class CoursesController < SecuredController
   def profiledata
     user_courses = User.find_by(auth_id: params[:user_id]).courses.limit(7)
     distances = []
-    user_course.each do |course|
-      distances << course.distance
+    user_courses.each do |course|
+      distances.push(course.distance)
     end
-
+    (15-distances.size).times{distances.unshift(3)}
     render json: {distance: distances}
   end
 
